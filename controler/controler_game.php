@@ -56,4 +56,4 @@ if ($r == 0) {
 }
 // var_dump( $_SESSION["mots_a_trouver"] );
 
-header("Location: lettre.php");
+header("Location: ../vue/lettre.php");

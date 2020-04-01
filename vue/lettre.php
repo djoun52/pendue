@@ -76,7 +76,7 @@ if (isset($_POST['mots'])) {
     // var_dump($_SESSION["over_use"]);
 
     ?>
-    <form action="controler_game.php" method=post>
+    <form action="../controler/controler_game.php" method=post>
         <input type="text" name="lettre" maxlength="1">
         <input type="submit" value="envoyé">
     </form>
@@ -86,19 +86,19 @@ if (isset($_POST['mots'])) {
         echo $value;
     }
     if ($_SESSION["erreur"] == 0) {
-        echo '<img src="image/1.png">';
+        echo '<img src="../image/1.png">';
     } elseif ($_SESSION["erreur"] == 1) {
-        echo '<img src="image/2.png">';
+        echo '<img src="../image/2.png">';
     } elseif ($_SESSION["erreur"] == 2) {
-        echo '<img src="image/3.png">';
+        echo '<img src="../image/3.png">';
     } elseif ($_SESSION["erreur"] == 3) {
-        echo '<img src="image/4.png">';
+        echo '<img src="../image/4.png">';
     } elseif ($_SESSION["erreur"] == 4) {
-        echo '<img src="image/5.png">';
+        echo '<img src="../image/5.png">';
     } elseif ($_SESSION["erreur"] == 5) {
-        echo '<img src="image/6.png">';
+        echo '<img src="../image/6.png">';
     } elseif ($_SESSION["erreur"] == 6) {
-        echo '<img src="image/7.png">';
+        echo '<img src="../image/7.png">';
     }
 
     foreach ($_SESSION["over_use"] as $key => $value)
