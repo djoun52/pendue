@@ -1,3 +1,14 @@
+
+<?php
+session_start();
+var_dump($_SESSION);
+
+session_destroy();
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +18,22 @@
 </head>
 <body>
     
-    céation de compte joueur
+    <!-- céation de compte joueur -->
+    <a href=" ./vue/inscription.php">Inscription</a>
+
+    <!-- identification  -->
+    <a href="./vue/connexion.php">Identification</a>
 
 
-    identification 
+    <a href="./controler/controlerDeconnexion.php">deconnexion</a>
 
-    Nouvelle partie 
+
+
+
+
+
+
+
+
 </body>
 </html>

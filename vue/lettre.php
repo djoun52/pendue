@@ -1,44 +1,10 @@
 <?php
 session_start();
+var_dump($_SESSION);
+var_dump($_POST);
 
-if (!isset($_POST)) {
-    header("Location: selection_mots.php");
-    die();
-}
 
-if (isset($_POST['mots'])) {
-    if (is_string($_POST['mots'])) {
-        if ($_POST['mots'] == NULL) {
-            header("Location: selection_mots.php");
-            die;
-        }
 
-        if (strlen(($_POST['mots']) > 30)) {
-            header("Location: selection_mots.php");
-            die;
-        }
-        $a = 0;
-        $_SESSION["victory"] = false;
-        $_SESSION["over_use"] = [" "];
-        $_SESSION["erreur"] = 0;
-        $_SESSION['mots'] = $_POST;
-        // var_dump($_SESSION['mots']);
-
-        // echo $_POST["mots"];
-        $_SESSION["mots_decompo"] = str_split($_POST["mots"]);
-        // var_dump($_SESSION["mots_decompo"]);
-        $_SESSION["mots_a_trouver"] = [];
-        foreach ($_SESSION["mots_decompo"] as $key => $value) {
-            if ($value == " ") {
-                header("Location: selection_mots.php");
-                die;
-            }
-            array_push($_SESSION["mots_a_trouver"], "_ ");
-        }
-    } else {
-        header("Location: selection_mots.php");
-    }
-}
 
 
 
@@ -55,34 +21,34 @@ if (isset($_POST['mots'])) {
 
 <body>
     <?php
-    if ($_SESSION["victory"] == true) {
-        echo "C'est la victiore";
-        echo "<br>";
-        echo "Veut tu " . '<a href="selection_mots.php">rejouer</a> ';
-        die;
-    }
-    if ($_SESSION["erreur"] == 7) {
-        echo "PERDU";
-        echo '<img src="image/8.png">';
-        echo "<br>";
-        echo "le mots était " .  $_SESSION['mots']["mots"];
-        echo "<br>";
-        echo '<a href="selection_mots.php">dommage retente ta chance</a> ';
+    // if ($_SESSION["victory"] == true) {
+    //     echo "C'est la victiore";
+    //     echo "<br>";
+    //     echo "Veut tu " . '<a href="selection_mots.php">rejouer</a> ';
+    //     die;
+    // }
+    // if ($_SESSION["erreur"] == 7) {
+    //     echo "PERDU";
+    //     echo '<img src="image/8.png">';
+    //     echo "<br>";
+    //     echo "le mots était " .  $_SESSION['mots']["mots"];
+    //     echo "<br>";
+    //     echo '<a href="selection_mots.php">dommage retente ta chance</a> ';
 
 
 
-        die;
-    }
+    //     die;
+    // }
     // var_dump($_SESSION["over_use"]);
 
     ?>
-    <form action="../controler/controler_game.php" method=post>
+    <form action="../controler/controlerGame.php" method=post>
         <input type="text" name="lettre" maxlength="1">
         <input type="submit" value="envoyé">
     </form>
     <?php
     // var_dump($_SESSION["mots_a_trouver"]);
-    foreach ($_SESSION["mots_a_trouver"] as $key => $value) {
+    foreach ($_SESSION["mots_a_trouver"] as $value) {
         echo $value;
     }
     if ($_SESSION["erreur"] == 0) {
@@ -101,7 +67,7 @@ if (isset($_POST['mots'])) {
         echo '<img src="../image/7.png">';
     }
 
-    foreach ($_SESSION["over_use"] as $key => $value)
+    foreach ($_SESSION["over_use"] as $value)
         echo $value . ' ';
     ?>
 

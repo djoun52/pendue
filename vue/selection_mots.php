@@ -1,6 +1,28 @@
 <?php
 session_start();
-session_destroy();
+
+if (!isset($_SESSION['nom'])) {
+    header("Location: connexion.php");
+}
+
+if (isset($_SESSION["mots"])) {
+    $_SESSION["mots"]=NULL;
+}
+if (isset($_SESSION["mots_decompo"])) {
+    $_SESSION["mots_decompo"]=NULL;
+}
+if (isset($_SESSION["mots_a_trouver"])) {
+    $_SESSION["mots_a_trouver"]=NULL;
+}
+if (isset($_SESSION["lettre"])) {
+    $_SESSION["lettre"]=NULL;
+}
+if (isset($_SESSION["over_use"])) {
+    $_SESSION["over_use"]=NULL;
+}
+var_dump($_SESSION)
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +37,7 @@ session_destroy();
 <body>
 
 
-    <form action="lettre.php" method=post>
+    <form action="../controler/controlerNbPartie.php" method=post>
         <input type="password" name="mots"maxlength="30">
         <input type="submit" value="envoyé">
     </form>

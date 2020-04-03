@@ -1,13 +1,12 @@
 <?php
 session_start();
+// var_dump($_SESSION);
+// var_dump($_POST);
 
-if (!isset($_POST)) {
-    header("Location: lettre.php");
-    die();
-}
+
 
 if (!isset($_POST['lettre'])) {
-    header("Location: selection_mots.php");
+    header("Location: ./vue/selection_mots.php");
     die();
 }
 
@@ -16,13 +15,13 @@ $_SESSION['lettre'] = $_POST;
 $a = $_SESSION["lettre"]["lettre"];
 
 if (strlen($a) != 1) {
-    header("Location: lettre.php");
+    header("Location:  ../vue/lettre.php");
     die;
 }
 
 foreach ($_SESSION["over_use"] as $key => $value) {
     if ($a == $value) {
-        header("Location: lettre.php");
+        header("Location:  ../vue/lettre.php");
         die;
     }
 }
@@ -56,4 +55,21 @@ if ($r == 0) {
 }
 // var_dump( $_SESSION["mots_a_trouver"] );
 
+if ($_SESSION["victory"] == true) {
+    header("Location: ./controlerNbPartieWin.php");
+
+    die;
+}
+if ($_SESSION["erreur"] == 7) {
+    echo "PERDU";
+    echo '<img src="image/8.png">';
+    echo "<br>";
+    echo "le mots était " .  $_SESSION['mots']["mots"];
+    echo "<br>";
+    echo '<a href="selection_mots.php">dommage retente ta chance</a> ';
+
+
+
+    die;
+}
 header("Location: ../vue/lettre.php");
