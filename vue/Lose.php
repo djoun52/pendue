@@ -9,10 +9,12 @@
 
 
 
-    <p> C'est la victiore </p><br>
-    <p>
-        Veut tu <a href="selection_mots.php">rejouer</a>
- </p> 
+<h1>PERDU</h1>
+<img src="../image/8.png">
+<br>
+<p>le mots était <?php $_SESSION['mots']["mots"]?></p>
+<br>
+<a href="selection_mots.php">dommage retente ta chance</a> ';
     
 </body>
 </html>

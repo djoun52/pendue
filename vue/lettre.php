@@ -20,28 +20,7 @@ var_dump($_POST);
 </head>
 
 <body>
-    <?php
-    // if ($_SESSION["victory"] == true) {
-    //     echo "C'est la victiore";
-    //     echo "<br>";
-    //     echo "Veut tu " . '<a href="selection_mots.php">rejouer</a> ';
-    //     die;
-    // }
-    // if ($_SESSION["erreur"] == 7) {
-    //     echo "PERDU";
-    //     echo '<img src="image/8.png">';
-    //     echo "<br>";
-    //     echo "le mots était " .  $_SESSION['mots']["mots"];
-    //     echo "<br>";
-    //     echo '<a href="selection_mots.php">dommage retente ta chance</a> ';
 
-
-
-    //     die;
-    // }
-    // var_dump($_SESSION["over_use"]);
-
-    ?>
     <form action="../controler/controlerGame.php" method=post>
         <input type="text" name="lettre" maxlength="1">
         <input type="submit" value="envoyé">

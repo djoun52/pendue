@@ -5,7 +5,7 @@ require_once('../Modele/connect.php');
 session_start();
 // var_dump($_SESSION);
 // var_dump($_POST);
-
+// echo $_SESSION['nom']['pseudo'];
 
 
 
@@ -30,8 +30,9 @@ if (isset($_POST['mots'])) {
             // header("Location: selection_mots.php");
             die;
         }
-        $stmt = $bdd->prepare('UPDATE `users` SET `partie`= partie+1 WHERE pseudo = $_session[nom][pseudo]'); // requete vers database
-        $stmt->bindParam("pseudo", $_POST['u_pseudo']); // requete vers database
+        $psudo=$_SESSION['nom']['pseudo'];
+        $stmt = $bdd->prepare('UPDATE `users` SET `partie`= partie+1 WHERE pseudo = :pseudo '); // requete vers database
+        $stmt->bindParam("pseudo", $psudo); // requete vers database
         $stmt->execute(); // requete vers database
         $a = 0;
         $_SESSION["victory"] = false;

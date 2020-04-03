@@ -20,9 +20,9 @@ if (isset($_SESSION["lettre"])) {
 if (isset($_SESSION["over_use"])) {
     $_SESSION["over_use"]=NULL;
 }
-var_dump($_SESSION)
+// var_dump($_SESSION);
 
-
+// var_dump ($_SESSION['nom']['pseudo']); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,6 +41,7 @@ var_dump($_SESSION)
         <input type="password" name="mots"maxlength="30">
         <input type="submit" value="envoyé">
     </form>
+
 </body>
 
 </html>
