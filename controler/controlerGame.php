@@ -61,15 +61,7 @@ if ($_SESSION["victory"] == true) {
     die;
 }
 if ($_SESSION["erreur"] == 7) {
-    echo "PERDU";
-    echo '<img src="image/8.png">';
-    echo "<br>";
-    echo "le mots était " .  $_SESSION['mots']["mots"];
-    echo "<br>";
-    echo '<a href="selection_mots.php">dommage retente ta chance</a> ';
+    header("Location: ../vue/lose.php");
 
-
-
-    die;
 }
 header("Location: ../vue/lettre.php");

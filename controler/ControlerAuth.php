@@ -27,7 +27,7 @@ if ($_GET['nom'] == "connect") {
                 $_SESSION['nom'] = $result;
                 // unset($_SESSION['error_msg']);
                 $_SESSION['error_msg'] = '';
-                header('Location: ../Vue/selection_mots.php');
+                header('Location: ../Vue/newGame.php');
             } else {
                 var_dump($result);
 

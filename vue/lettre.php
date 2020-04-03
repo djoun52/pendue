@@ -1,12 +1,14 @@
 <?php
 session_start();
-var_dump($_SESSION);
-var_dump($_POST);
+// var_dump($_SESSION);
+// var_dump($_POST);
 
 
 
 
-
+if (!isset($_SESSION['nom'])) {
+    header("Location: connexion.php");
+}
 
 ?>
 <!DOCTYPE html>
@@ -16,20 +18,30 @@ var_dump($_POST);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+
     <title>Document</title>
 </head>
 
 <body>
-
+<div id="wrapper">
+<a href="../controler/controlerDeconnexion.php">deconnexion</a>
+<a href="profil.php?nom=Game">profil</a> 
     <form action="../controler/controlerGame.php" method=post>
         <input type="text" name="lettre" maxlength="1">
         <input type="submit" value="envoyé">
     </form>
+
+    <div>
     <?php
     // var_dump($_SESSION["mots_a_trouver"]);
     foreach ($_SESSION["mots_a_trouver"] as $value) {
         echo $value;
     }
+    ?>
+    </div>
+    <div>
+  <?php
     if ($_SESSION["erreur"] == 0) {
         echo '<img src="../image/1.png">';
     } elseif ($_SESSION["erreur"] == 1) {
@@ -45,12 +57,19 @@ var_dump($_POST);
     } elseif ($_SESSION["erreur"] == 6) {
         echo '<img src="../image/7.png">';
     }
-
+    ?>
+    </div>
+    <div>
+  
+    <?php
     foreach ($_SESSION["over_use"] as $value)
         echo $value . ' ';
     ?>
+    </div>
 
 
+
+</div>
 </body>
 
 </html>

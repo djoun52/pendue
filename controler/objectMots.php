@@ -1,9 +1,0 @@
-<?php
-
-
-new class Mots{
-    
-    
-
-    
-}

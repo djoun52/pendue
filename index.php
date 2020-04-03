@@ -16,6 +16,8 @@ if(isset($_SESSION)){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./vue/style.css">
+
     <title>Document</title>
 </head>
 <body>
@@ -26,8 +28,6 @@ if(isset($_SESSION)){
     <!-- identification  -->
     <a href="./vue/connexion.php">Identification</a>
 
-
-    <a href="./controler/controlerDeconnexion.php">deconnexion</a>
 
 
 
