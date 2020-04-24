@@ -31,19 +31,19 @@ if ($_GET['nom'] == "connect") {
             } else {
                 var_dump($result);
 
-                $_SESSION['error_msg'] = 'mauvais mot de passe';
+                $_SESSION['error_msg'] = '<p class="error">mauvais mot de passe</p>';
                 header('Location: ../Vue/connexion.php');
                 die();
             }
         } else {
             //utlisateur nexiste pas 
-            $_SESSION['error_msg'] = "L'utilisateur n'existe pas";
+            $_SESSION['error_msg'] = "<p class='error'>L'utilisateur n'existe pas</p>";
             header('Location: ../Vue/connexion.php');
             die();
         }
     } else {
         // remplir les champs
-        $_SESSION['error_msg'] = 'Veuillez remplir les champs';
+        $_SESSION['error_msg'] = '<p class="error">Veuillez remplir les champs</p>';
         header('Location: ../Vue/connexion.php');
         die();
     }
@@ -79,22 +79,22 @@ if ($_GET['nom'] == "register") {
                     header('Location: ../Vue/connexion.php');
                     die();
                 } else {
-                    $_SESSION['error_msg'] = 'les mot de passe ne concorde pas';
+                    $_SESSION['error_msg'] = '<p class="error">les mot de passe ne concorde pas </p>';
                     header('Location: ../Vue/inscription.php');
                     die();
                 }
             } else {
-                $_SESSION['error_msg'] = 'la mot de passe doit faire entre 8 et 16 caractere au moins 1 Majuscule 1 chiffre et 1 miniscules';
+                $_SESSION['error_msg'] = '<p class="error">la mot de passe doit faire entre 8 et 16 caractere au moins 1 Majuscule 1 chiffre et 1 miniscules</p>';
                 header('Location: ../Vue/inscription.php');
                 die();
             }
         } else {
-            $_SESSION['error_msg'] = 'Utilsateur existe déjà';
+            $_SESSION['error_msg'] = '<p class="error">Utilsateur existe déjà </p>';
             header('Location: ../Vue/inscription.php');
             die();
         }
     } else {
-        $_SESSION['error_msg'] = 'Veuillez remplir les champs';
+        $_SESSION['error_msg'] = '<p class="error">Veuillez remplir les champs </p>';
         header('Location: ../Vue/inscription.php');
         die();
     }

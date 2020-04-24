@@ -4,34 +4,99 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_inscri.css">
     <title>Document</title>
 </head>
-<body>   
-<div id="wrapper">
-<a href="./connexion.php">Identification</a>
-<a href="../controler/ControlerAuth.php?nom=deco">deconnexion</a>
 
- <form method="post" action="../Controler/ControlerAuth.php?nom=register">
-        Nom : <input type="text" name="u_nom" size="12"><br>
-        Prénom : <input type="text" name="u_prenom" size="12">
-        Pseudo : <input type="text" name="u_pseudo" size="20">
-        password : <input type="text" name="u_password" size="12">
-        confirmer password : <input type="text" name="u_confirmer_password" size="12">
+<body>
+    <div id="wrapper">
 
-        <input type="submit" value="OK">
-    </form>
-    <?php
 
-if (isset($_SESSION['error_msg'])) {
-    echo $_SESSION['error_msg'];
+        <div class="nav-wrapper">
+            <nav>
+                <div class="navigation">
+                    <ul class="nav-items">
+                        <li><a href="./connexion.php">Identification</a></li>
+                        <li><a href="../controler/ControlerAuth.php?nom=deco">deconnexion</a></li>
+                    </ul>
+                    <div class="nav-toogler"></div>
+                </div>
+            </nav>
+        </div>
 
+
+
+
+
+        <form id="formu" method="post" action="../Controler/ControlerAuth.php?nom=register">
+            <div class="flex">
+                <label id="labNom" for="u_nom">Nom :</label>
+                <input type="text" name="u_nom" size="15">
+            </div>
+            <div class="flex">
+                <label for="u_prenom">Prénom :</label>
+                <input type="text" name="u_prenom" size="15">
+            </div>
+            <div class="flex">
+                <label for="u_pseudo">Pseudo : </label>
+                <input type="text" name="u_pseudo" size="15">
+            </div>
+            <div class="flex">
+                <label for="u_password">password : </label>
+                <input type="text" name="u_password" size="15">
+            </div>
+            <div class="flex">
+                <label for="u_confirmer_password">confirmer password : </label>
+                <input type="text" name="u_confirmer_password" size="15">
+            </div>
+            
+            <div class="flex">
+                    <input type="submit" value="OK">
+            </div>
+        
+        </form>
+        <?php
+
+        if (isset($_SESSION['error_msg'])) {
+            echo $_SESSION['error_msg'];
+        }
+        ?>
+    </div>
+
+<?php
+if (!isset($_SESSION['error_msg'])){
+    ?>
+     <object>
+<param name="autostart" value="true">
+<param name="src" value="sound.mp3">
+<param name="autoplay" value="true"> 
+<embed src="../sound/carioca.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
+</object>
+<?php
+}else {
+    ?>
+    <object>
+<param name="autostart" value="true">
+<param name="src" value="sound.mp3">
+<param name="autoplay" value="true"> 
+<embed src="../sound/il-dit-quil-voit-pas-le-rapport-la-cite-de-la-peur.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
+</object>
+<?php
 }
 ?>
-</div>
+    <script>
+        let navWrapper = document.querySelector('.nav-wrapper'),
+            navToogler = document.querySelector('.nav-toogler')
+
+        navToogler.addEventListener('click', function(event) {
+            navWrapper.classList.toggle('active')
+        })
+    </script>
 </body>
+
 </html>
