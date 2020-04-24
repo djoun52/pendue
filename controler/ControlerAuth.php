@@ -104,7 +104,7 @@ if ($_GET['nom'] == 'deco') {
     session_start();
     unset($_SESSION['nom']);
     unset($_SESSION['error_msg']);
-    header("Location: ../index.php");
+    header("Location: ../index.html");
     die();
 }
 
