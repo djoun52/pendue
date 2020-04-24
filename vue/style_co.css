@@ -6,17 +6,35 @@
     width: 100%;
     min-height: 100%;
     font-family: 'roboto', sans-serif ;
-    font-size: 16px;
+    font-size: 22px;
     margin: auto;
     background-color: rgb(255, 0, 0);
   }
   
+  
   #wrapper{
     padding-top: 4em;
-    max-width: 1024px;
+    max-width: 1600px;
     margin: auto;
-  }
+    padding-bottom: 100%;
+    position: relative;
+    color: white ;
 
+}
+
+  #wrapper::after{
+    content: "";
+    background-image: url( ../image/red_is_dead.jpg);
+    background-size: 1600px;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1; 
+}
   #formu{
     margin-top: 10em;
     padding-left: 2em;
@@ -72,7 +90,7 @@ label{
     max-width: 80%;
     border-radius: 8px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-    background-color: rgb(0, 17, 255);
+    background-color: rgb(219, 71, 71);
     padding-right: 30px;
     line-height: 3;
     display: flex;

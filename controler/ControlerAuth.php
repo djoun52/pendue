@@ -103,6 +103,7 @@ if ($_GET['nom'] == "register") {
 if ($_GET['nom'] == 'deco') {
     session_start();
     unset($_SESSION['nom']);
+    unset($_SESSION['error_msg']);
     header("Location: ../index.php");
     die();
 }
@@ -130,3 +131,17 @@ if ($_GET['nom'] == 'profilGame') {
     die();
 }
 
+
+
+if ($_GET['nom'] == 'identi') {
+    session_start();
+    unset($_SESSION['error_msg']);
+    header("Location: ../vue/connexion.php");
+    die();
+}
+if ($_GET['nom'] == 'inscri') {
+    session_start();
+    unset($_SESSION['error_msg']);
+    header("Location: ../vue/inscription.php");
+    die();
+}

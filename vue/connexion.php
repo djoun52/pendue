@@ -22,7 +22,7 @@ session_start();
             <nav>
                 <div class="navigation">
                     <ul class="nav-items">
-                        <li><a href=" ./inscription.php">Inscription</a></li>
+                        <li><a href=" ../controler/ControlerAuth.php?nom=inscri">Inscription</a></li>
                         <li><a href="../controler/ControlerAuth.php?nom=deco">deconnexion</a></li>
                     </ul>
                     <div class="nav-toogler"></div>
@@ -37,11 +37,11 @@ session_start();
                 <input type="text" name="u_pseudo" size="15">
             </div>
             <div class="flex">
-            <label id="labPassword" for="u_nom">password : </label>
-            <input type="text" name="u_password" size="15">
+                <label id="labPassword" for="u_nom">password : </label>
+                <input type="text" name="u_password" size="15">
             </div>
             <div class="flex">
-            <input type="submit" value="OK">
+                <input type="submit" value="OK">
             </div>
         </form>
         <?php
@@ -50,8 +50,30 @@ session_start();
             echo $_SESSION['error_msg'];
         }
         ?>
-
+        <?php
+        if (!isset($_SESSION['error_msg'])) {
+        ?>
+            <object>
+                <param name="autostart" value="true">
+                <param name="src" value="sound.mp3">
+                <param name="autoplay" value="true">
+                <embed src="../sound/la-cite-de-la-peur-meurs-pourriture-communiste.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
+            </object>
+        <?php
+        } else {
+        ?>
+            <object>
+                <param name="autostart" value="true">
+                <param name="src" value="sound.mp3">
+                <param name="autoplay" value="true">
+                <embed src="../sound/il-dit-quil-voit-pas-le-rapport-la-cite-de-la-peur.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
+            </object>
+        <?php
+        }
+        ?>
     </div>
+
+
     <script>
         let navWrapper = document.querySelector('.nav-wrapper'),
             navToogler = document.querySelector('.nav-toogler')
