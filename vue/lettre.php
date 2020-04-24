@@ -12,12 +12,13 @@ if (!isset($_SESSION['nom'])) {
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
     <title>Document</title>
@@ -25,8 +26,8 @@ if (!isset($_SESSION['nom'])) {
 
 <body>
 <div id="wrapper">
-<a href="../controler/controlerDeconnexion.php">deconnexion</a>
-<a href="profil.php?nom=Game">profil</a> 
+<a href="../controler/ControlerAuth.php?nom=deco">deconnexion</a>
+<a href="../controler/ControlerAuth.php?nom=profilGame">profil</a> 
     <form action="../controler/controlerGame.php" method=post>
         <input type="text" name="lettre" maxlength="1">
         <input type="submit" value="envoyé">

@@ -103,7 +103,30 @@ if ($_GET['nom'] == "register") {
 if ($_GET['nom'] == 'deco') {
     session_start();
     unset($_SESSION['nom']);
-    header("Location: ../Vue/index.php");
+    header("Location: ../index.php");
+    die();
+}
+
+if ($_GET['nom'] == 'profilNoGame') {
+    session_start();
+    $psudo = $_SESSION['nom']['pseudo'];
+    $stmt = $bdd->prepare('SELECT * FROM users WHERE pseudo= :pseudo'); // requete vers database
+    $stmt->bindParam("pseudo", $psudo); // requete vers database
+    $stmt->execute(); // requete vers database
+    $result = $stmt->fetch();
+    $_SESSION['nom'] = $result;
+    header("Location: ../vue/profil.php?nom=noGame");
+    die();
+}
+if ($_GET['nom'] == 'profilGame') {
+    session_start();
+    $psudo = $_SESSION['nom']['pseudo'];
+    $stmt = $bdd->prepare('SELECT * FROM users WHERE pseudo= :pseudo'); // requete vers database
+    $stmt->bindParam("pseudo", $psudo); // requete vers database
+    $stmt->execute(); // requete vers database
+    $result = $stmt->fetch();
+    $_SESSION['nom'] = $result;
+    header("Location: ../vue/profil.php");
     die();
 }
 

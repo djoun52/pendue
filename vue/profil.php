@@ -3,22 +3,23 @@ session_start();
 if (!isset($_SESSION['nom'])) {
     header("Location: connexion.php");
 }
-// var_dump($_SESSION);
+var_dump($_SESSION);
 
 $r=100/($_SESSION['nom']['partie']/$_SESSION['nom']['partie_win']);
 $stat=round($r,2)
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
       <link rel="stylesheet" href="style.css">
+      <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
 <div id="wrapper">
-<a href="../controler/controlerDeconnexion.php">deconnexion</a>
+<a href="../controler/ControlerAuth.php?nom=deco">deconnexion</a>
 <?php
 if($_GET['nom'] == "noGame"){
 ?>

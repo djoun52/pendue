@@ -7,16 +7,17 @@ if (!isset($_SESSION['nom'])) {
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 <div id="wrapper">
         <title>Document</title>
 </head>
 <body>
-<a href="../controler/controlerDeconnexion.php">deconnexion</a>
+<a href="../controler/ControlerAuth.php?nom=deco">deconnexion</a>
 
 
     <p> C'est la victiore </p><br>
