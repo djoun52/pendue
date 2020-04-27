@@ -1,7 +1,7 @@
 <?php
 session_start();
-var_dump($_SESSION);
-var_dump($_POST);
+// var_dump($_SESSION);
+// var_dump($_POST);
 
 
 
@@ -25,52 +25,58 @@ if (!isset($_SESSION['nom'])) {
 </head>
 
 <body>
-<div id="wrapper">
-<a href="../controler/ControlerAuth.php?nom=deco">deconnexion</a>
-<a href="../controler/ControlerAuth.php?nom=profilGame">profil</a> 
-    <form action="../controler/controlerGame.php" method=post>
-        <input type="text" name="lettre" maxlength="1">
-        <input type="submit" value="envoyé">
-    </form>
+    <div id="wrapper">
+        <a href="../controler/ControlerAuth.php?nom=deco">deconnexion</a>
+        <a href="../controler/ControlerAuth.php?nom=profilGame">profil</a>
 
-    <div>
-    <?php
-    // var_dump($_SESSION["mots_a_trouver"]);
-    foreach ($_SESSION["mots_a_trouver"] as $value) {
-        echo $value;
-    }
-    ?>
+        <form id="chooseLetter" action="../controler/controlerGame.php" method=post>
+            <input type="text" name="lettre" maxlength="1">
+            <input type="submit" value="envoyé">
+        </form>
+
+        <div>
+            <?php
+            // var_dump($_SESSION["mots_a_trouver"]);
+            foreach ($_SESSION["mots_a_trouver"] as $value) {
+                echo $value;
+            }
+            ?>
+        </div>  
+        <section>
+            <div id="letter_use" >
+
+            <?php
+            foreach ($_SESSION["over_use"] as $value)
+                echo $value . ' ';
+            ?>
+        </div>
+
+        <div>
+            <?php
+            if ($_SESSION["erreur"] == 0) {
+                echo '<img src="../image/1.png">';
+            } elseif ($_SESSION["erreur"] == 1) {
+                echo '<img src="../image/2.png">';
+            } elseif ($_SESSION["erreur"] == 2) {
+                echo '<img src="../image/3.png">';
+            } elseif ($_SESSION["erreur"] == 3) {
+                echo '<img src="../image/4.png">';
+            } elseif ($_SESSION["erreur"] == 4) {
+                echo '<img src="../image/5.png">';
+            } elseif ($_SESSION["erreur"] == 5) {
+                echo '<img src="../image/6.png">';
+            } elseif ($_SESSION["erreur"] == 6) {
+                echo '<img src="../image/7.png">';
+            }
+            ?>
+        </div>
+        </section>  
+        
+ 
+
+
+
     </div>
-    <div>
-  <?php
-    if ($_SESSION["erreur"] == 0) {
-        echo '<img src="../image/1.png">';
-    } elseif ($_SESSION["erreur"] == 1) {
-        echo '<img src="../image/2.png">';
-    } elseif ($_SESSION["erreur"] == 2) {
-        echo '<img src="../image/3.png">';
-    } elseif ($_SESSION["erreur"] == 3) {
-        echo '<img src="../image/4.png">';
-    } elseif ($_SESSION["erreur"] == 4) {
-        echo '<img src="../image/5.png">';
-    } elseif ($_SESSION["erreur"] == 5) {
-        echo '<img src="../image/6.png">';
-    } elseif ($_SESSION["erreur"] == 6) {
-        echo '<img src="../image/7.png">';
-    }
-    ?>
-    </div>
-    <div>
-  
-    <?php
-    foreach ($_SESSION["over_use"] as $value)
-        echo $value . ' ';
-    ?>
-    </div>
-
-
-
-</div>
 </body>
 
 </html>

@@ -15,3 +15,16 @@
     max-width: 1024px;
     margin: auto;
   }
+
+  #chooseLetter{
+    padding-top: 2em;
+  }
+
+  section{
+    display: flex;
+  }
+
+  #letter_use{
+    align-content: flex-start ;
+    justify-content: center;
+  }
