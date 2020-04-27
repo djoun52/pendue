@@ -50,27 +50,40 @@ session_start();
             echo $_SESSION['error_msg'];
         }
         ?>
-    <?php
-if (!isset($_SESSION['error_msg'])){
-    ?>
-     <object>
-<param name="autostart" value="true">
-<param name="src" value="sound.mp3">
-<param name="autoplay" value="true"> 
-<embed src="../sound/la-cite-de-la-peur-meurs-pourriture-communiste.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
-</object>
-<?php
-}else {
-    ?>
-    <object>
-<param name="autostart" value="true">
-<param name="src" value="sound.mp3">
-<param name="autoplay" value="true"> 
-<embed src="../sound/il-dit-quil-voit-pas-le-rapport-la-cite-de-la-peur.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
-</object>
-<?php
-}
-?>
+
+
+
+
+        <object>
+            <param name="autostart" value="true">
+            <param name="src" value="sound.mp3">
+            <param name="autoplay" value="true">
+
+            <?php
+            if (!isset($_SESSION['error_msg'])) {
+            ?>
+            <embed src="../sound/la-cite-de-la-peur-meurs-pourriture-communiste.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
+            <?php
+            } elseif($_SESSION['nbErreurMsg']==1){
+            ?>
+                <embed src="../sound/il-dit-quil-voit-pas-le-rapport-la-cite-de-la-peur.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
+
+            <?php
+            }elseif($_SESSION['nbErreurMsg']==2){
+            ?>
+            <embed src="../sound/comment-voulez-vous-quavec-le-truc-je-fasse-le-chose-la-cite-de-la-peur.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
+            <?php
+            }elseif($_SESSION['nbErreurMsg']==3){
+            ?>
+            <embed src="../sound/tu-bluffes-martoni.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
+            <?php
+            }elseif($_SESSION['nbErreurMsg']>=4){
+            ?>
+            <embed src="../sound/aie-eu.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
+            <?php
+            }
+            ?>
+        </object>
     </div>
 
 

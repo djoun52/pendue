@@ -106,7 +106,7 @@ label{
     transition: .4s cubic-bezier(.77,0,.18,1);
   }
   .nav-wrapper.active ul{
-    width: 20em;
+    width: 15em;
     margin-right: 20px;
   }
   
@@ -115,10 +115,10 @@ label{
     text-decoration: none;
     transition: .3s;
     padding: 0 1em;
-    font-size: 15px;
+    font-size: 18px;
   }
   a:hover{
-    color: rgb(255, 255, 255);
+    font-size: 22px;
   
     ;
   }

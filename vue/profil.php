@@ -1,9 +1,9 @@
 <?php
 session_start();
-if (!isset($_SESSION['nom'])) {
-    header("Location: connexion.php");
-}
-var_dump($_SESSION);
+// if (!isset($_SESSION['nom'])) {
+//     header("Location: connexion.php");
+// }
+// var_dump($_SESSION);
 
 $r=100/($_SESSION['nom']['partie']/$_SESSION['nom']['partie_win']);
 $stat=round($r,2)
@@ -21,13 +21,13 @@ $stat=round($r,2)
 <div id="wrapper">
 <a href="../controler/ControlerAuth.php?nom=deco">deconnexion</a>
 <?php
-if($_GET['nom'] == "noGame"){
+if(!isset($_GET['nom'])){
 ?>
-<a href="newGame.php">commencer un partie</a> 
+<a href="lettre.php">reprendre la partie</a> 
 <?php
 }else{
 ?>
-<a href="lettre.php">reprendre la partie</a> 
+<a href="newGame.php">commencer un partie</a> 
 <?php
 }
 ?>

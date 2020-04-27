@@ -3,7 +3,9 @@
 require_once('../Modele/connect.php');
 
 session_start();
-
+if(!isset($_SESSION['nbErreurMsg'])){
+    $_SESSION['nbErreurMsg']=0;
+}
 // var_dump($_POST);
 
 
@@ -32,18 +34,21 @@ if ($_GET['nom'] == "connect") {
                 var_dump($result);
 
                 $_SESSION['error_msg'] = '<p class="error">mauvais mot de passe</p>';
+                $_SESSION['nbErreurMsg']++;
                 header('Location: ../Vue/connexion.php');
                 die();
             }
         } else {
             //utlisateur nexiste pas 
             $_SESSION['error_msg'] = "<p class='error'>L'utilisateur n'existe pas</p>";
+            $_SESSION['nbErreurMsg']++;
             header('Location: ../Vue/connexion.php');
             die();
         }
     } else {
         // remplir les champs
         $_SESSION['error_msg'] = '<p class="error">Veuillez remplir les champs</p>';
+        $_SESSION['nbErreurMsg']++;
         header('Location: ../Vue/connexion.php');
         die();
     }
@@ -80,21 +85,25 @@ if ($_GET['nom'] == "register") {
                     die();
                 } else {
                     $_SESSION['error_msg'] = '<p class="error">les mot de passe ne concorde pas </p>';
+                    $_SESSION['nbErreurMsg']++;
                     header('Location: ../Vue/inscription.php');
                     die();
                 }
             } else {
                 $_SESSION['error_msg'] = '<p class="error">la mot de passe doit faire entre 8 et 16 caractere au moins 1 Majuscule 1 chiffre et 1 miniscules</p>';
+                $_SESSION['nbErreurMsg']++;
                 header('Location: ../Vue/inscription.php');
                 die();
             }
         } else {
             $_SESSION['error_msg'] = '<p class="error">Utilsateur existe déjà </p>';
+            $_SESSION['nbErreurMsg']++;
             header('Location: ../Vue/inscription.php');
             die();
         }
     } else {
         $_SESSION['error_msg'] = '<p class="error">Veuillez remplir les champs </p>';
+        $_SESSION['nbErreurMsg']++;
         header('Location: ../Vue/inscription.php');
         die();
     }
@@ -102,8 +111,7 @@ if ($_GET['nom'] == "register") {
 
 if ($_GET['nom'] == 'deco') {
     session_start();
-    unset($_SESSION['nom']);
-    unset($_SESSION['error_msg']);
+    session_destroy();
     header("Location: ../index.html");
     die();
 }
@@ -136,12 +144,14 @@ if ($_GET['nom'] == 'profilGame') {
 if ($_GET['nom'] == 'identi') {
     session_start();
     unset($_SESSION['error_msg']);
+    unset($_SESSION['nbErreurMsg']);
     header("Location: ../vue/connexion.php");
     die();
 }
 if ($_GET['nom'] == 'inscri') {
     session_start();
     unset($_SESSION['error_msg']);
+    unset($_SESSION['nbErreurMsg']);
     header("Location: ../vue/inscription.php");
     die();
 }

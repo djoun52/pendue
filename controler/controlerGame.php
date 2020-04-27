@@ -62,6 +62,6 @@ if ($_SESSION["victory"] == true) {
 }
 if ($_SESSION["erreur"] == 7) {
     header("Location: ../vue/lose.php");
-
+    die;
 }
 header("Location: ../vue/lettre.php");

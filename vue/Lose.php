@@ -3,6 +3,10 @@ session_start();
 if (!isset($_SESSION['nom'])) {
     header("Location: connexion.php");
 }
+
+var_dump($_SESSION);
+var_dump($_POST);
+
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +27,7 @@ if (!isset($_SESSION['nom'])) {
 <h1>PERDU</h1>
 <img src="../image/8.png">
 <br>
-<p>le mots était <?php $_SESSION['mots']?></p>
+<p>le mots était <?php echo $_SESSION['mots'] ;?> </p>
 <br>
 <a href="newGame.php">dommage retente ta chance</a> 
 </div>
