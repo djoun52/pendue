@@ -94,10 +94,11 @@ session_start();
             ?>
             <embed src="../sound/tu-bluffes-martoni.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
             <?php
-            }elseif($_SESSION['nbErreurMsg']>=4){
+            }elseif($_SESSION['nbErreurMsg']==4){
             ?>
             <embed src="../sound/aie-eu.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
             <?php
+            $_SESSION['nbErreurMsg']=0;
             }
             ?>
         </object>

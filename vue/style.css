@@ -10,6 +10,9 @@
     margin: auto;
   }
   
+  p{
+    margin-block-start: 0em;
+  }
   #wrapper{
     padding-top: 4em;
     max-width: 1024px;
@@ -22,9 +25,10 @@
 
   section{
     display: flex;
+    justify-content: space-evenly
   }
 
   #letter_use{
-    align-content: flex-start ;
-    justify-content: center;
+    display: flex;
+   padding-top: 5em;
   }

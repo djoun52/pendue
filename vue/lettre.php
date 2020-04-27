@@ -44,7 +44,7 @@ if (!isset($_SESSION['nom'])) {
         </div>  
         <section>
             <div id="letter_use" >
-
+            <p>lettres déja utilisé :  </p>
             <?php
             foreach ($_SESSION["over_use"] as $value)
                 echo $value . ' ';
