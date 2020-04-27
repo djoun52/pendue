@@ -59,23 +59,27 @@ if ($_GET['nom'] == "register") {
 
    
 
-    $password = filter_input(INPUT_POST, 'u_password', FILTER_DEFAULT);
-    $passworconfirm = filter_input(INPUT_POST, 'u_confirmer_password', FILTER_DEFAULT);
-    $pseudo = filter_input(INPUT_POST, 'u_pseudo', FILTER_DEFAULT);
-    $prenom = filter_input(INPUT_POST, 'u_prenom', FILTER_DEFAULT);
-    $nom = filter_input(INPUT_POST, 'u_nom', FILTER_DEFAULT);
+    $passworconfirm = trim(filter_input(INPUT_POST, 'u_confirmer_password', FILTER_SANITIZE_URL));
+    $pseudo = trim(filter_input(INPUT_POST, 'u_pseudo', FILTER_SANITIZE_URL));
+    $prenom = trim(filter_input(INPUT_POST, 'u_prenom', FILTER_SANITIZE_URL));
+    $nom = trim(filter_input(INPUT_POST, 'u_nom', FILTER_SANITIZE_URL));
     
-    $uppercase = preg_match('@[A-Z]@', $password);
-    $lowercase = preg_match('@[a-z]@', $password);
-    $number    = preg_match('@[0-9]@', $password);
+    $password = filter_input(INPUT_POST, 'u_password', FILTER_VALIDATE_REGEXP,
+    array("options" => array("regexp" => "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/")));
 
     if (!empty($_POST['u_password']) && !empty($_POST['u_confirmer_password']) && !empty($_POST['u_nom']) && !empty($_POST['u_pseudo'])) {
         $stmt = $bdd->prepare('SELECT * FROM users WHERE pseudo= :pseudo'); // requete vers database
         $stmt->bindParam("pseudo", $_POST['u_pseudo']); // requete vers database
         $stmt->execute(); // requete vers database
         $result = $stmt->fetch();
+
+       
+        
+
         if ($result == false) {
-            if ($uppercase || $lowercase || $number || strlen($password) > 8){
+
+           
+            if ($password && strlen($password) > 8){
                 if ($_POST['u_password'] == $_POST['u_confirmer_password']) {
                     $hashage = password_hash($_POST['u_password'], PASSWORD_DEFAULT);
                     $stmt = $bdd->prepare("INSERT INTO users (nom, prenom, pseudo, password, partie, partie_win) VALUES (?,?,?,?,?,?)");
@@ -84,19 +88,19 @@ if ($_GET['nom'] == "register") {
                     header('Location: ../Vue/connexion.php');
                     die();
                 } else {
-                    $_SESSION['error_msg'] = '<p class="error">les mot de passe ne concorde pas </p>';
+                    $_SESSION['error_msg'] = '<p class="error"> utilisateur ou mots de passe incorect</p>';
                     $_SESSION['nbErreurMsg']++;
                     header('Location: ../Vue/inscription.php');
                     die();
                 }
             } else {
-                $_SESSION['error_msg'] = '<p class="error">la mot de passe doit faire entre 8 et 16 caractere au moins 1 Majuscule 1 chiffre et 1 miniscules</p>';
+                $_SESSION['error_msg'] = '<p class="error">lutilisateur ou mots de passe incorect</p>';
                 $_SESSION['nbErreurMsg']++;
                 header('Location: ../Vue/inscription.php');
                 die();
             }
         } else {
-            $_SESSION['error_msg'] = '<p class="error">Utilsateur existe déjà </p>';
+            $_SESSION['error_msg'] = '<p class="error"> utilisateur ou mots de passe incorect</p>';
             $_SESSION['nbErreurMsg']++;
             header('Location: ../Vue/inscription.php');
             die();
