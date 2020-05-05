@@ -20,7 +20,9 @@
     color: white ;
 
 }
-
+p{
+  margin-block-start: 0em;
+}
 #wrapper::after{
     content: "";
     background-image: url( ../image/1132544.jpg);
@@ -50,6 +52,7 @@ label{
 .flex{
     display: flex;
     justify-content: start;
+    padding-bottom: 1em;
 }
 
 

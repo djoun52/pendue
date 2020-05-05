@@ -1,12 +1,16 @@
 <?php
 session_start();
-// if (!isset($_SESSION['nom'])) {
-//     header("Location: connexion.php");
-// }
+if (!isset($_SESSION['nom'])) {
+    header("Location: connexion.php");
+}
 // var_dump($_SESSION);
+if ($_SESSION['nom']['partie_win'] !=0){
+  $r=100/($_SESSION['nom']['partie']/$_SESSION['nom']['partie_win']);
+$stat=round($r,2);
+}else{
+  $stat=0;
+}
 
-$r=100/($_SESSION['nom']['partie']/$_SESSION['nom']['partie_win']);
-$stat=round($r,2)
 ?>
 <!DOCTYPE html>
 <html lang="fr">

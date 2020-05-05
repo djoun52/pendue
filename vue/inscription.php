@@ -48,8 +48,9 @@ session_start();
             </div>
             <div class="flex">
                 <label for="u_password">password : </label>
-                <input type="text" name="u_password" size="15">
+                <input type="text" name="u_password" size="15">     
             </div>
+            <p>le mots de passe doit avoir un majuscule et minmum 9 caractére</p>
             <div class="flex">
                 <label for="u_confirmer_password">confirmer password : </label>
                 <input type="text" name="u_confirmer_password" size="15">
