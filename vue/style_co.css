@@ -40,9 +40,17 @@
     padding-left: 2em;
 }
 
-label{
+#labPseudo{
     width: 7em;
     /* padding-right: 10px; */
+}
+#labPassword{
+    width: 7em;
+    /* padding-right: 10px; */
+}
+
+#option{
+  width: 14em;
 }
 .flex{
     display: flex;

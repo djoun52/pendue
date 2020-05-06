@@ -1,20 +1,20 @@
 <?php
 session_start();
 // var_dump($_SESSION);
-// $token = bin2hex(random_bytes(24));
+$token = bin2hex(random_bytes(24));
 
-// if (!isset($_SESSION['token']))
-//     {
-//         $_SESSION['token'] = $token;
-//     }else
-//     {
-//         $token = $_SESSION['token'];
-//     }
+if (!isset($_SESSION['token']))
+    {
+        $_SESSION['token'] = $token;
+    }else
+    {
+        $token = $_SESSION['token'];
+    }
 
-//     if(isset($_SESSION['user']) && !hash_equals($_SESSION['token'], $_SESSION['user']['token']))
-//     {
-//         header("../controler/ControlerAuth.php?nom=deco");
-//     }
+    if(isset($_SESSION['user']) && !hash_equals($_SESSION['token'], $_SESSION['user']['token']))
+    {
+        header("../controler/ControlerAuth.php?nom=deco");
+    }
 
 
 ?>
@@ -48,17 +48,21 @@ session_start();
 
 
         <form id="formu" method="post" action="../Controler/ControlerAuth.php?nom=connect">
-            <div class="flex" id="labPseudo">
+            <div class="flex" >
                 <label id="labPseudo" for="u_nom">pseudo : </label>
                 <input type="text" name="u_pseudo" size="15">
             </div>
             <div class="flex">
-            <label id="labPassword" for="u_nom">password : </label>
-            <input type="text" name="u_password" size="15">
+                <label id="labPassword" for="u_nom">password : </label>
+                <input type="text" name="u_password" size="15">
             </div>
-            <!-- <input type="hidden" value="<?= $token ?>" name="token"> -->
             <div class="flex">
-            <input type="submit" value="OK">
+                <label  id="option">
+                <input type="checkbox" name="auto" > Se souvenire de moi</label>
+            </div>
+            <input type="hidden" value="<?= $token ?>" name="token">
+            <div class="flex">
+                <input type="submit" value="OK">
             </div>
         </form>
         <?php
@@ -79,26 +83,26 @@ session_start();
             <?php
             if (!isset($_SESSION['error_msg'])) {
             ?>
-            <embed src="../sound/la-cite-de-la-peur-meurs-pourriture-communiste.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
+                <embed src="../sound/la-cite-de-la-peur-meurs-pourriture-communiste.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
             <?php
-            } elseif($_SESSION['nbErreurMsg']==1){
+            } elseif ($_SESSION['nbErreurMsg'] == 1) {
             ?>
                 <embed src="../sound/il-dit-quil-voit-pas-le-rapport-la-cite-de-la-peur.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
 
             <?php
-            }elseif($_SESSION['nbErreurMsg']==2){
+            } elseif ($_SESSION['nbErreurMsg'] == 2) {
             ?>
-            <embed src="../sound/comment-voulez-vous-quavec-le-truc-je-fasse-le-chose-la-cite-de-la-peur.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
+                <embed src="../sound/comment-voulez-vous-quavec-le-truc-je-fasse-le-chose-la-cite-de-la-peur.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
             <?php
-            }elseif($_SESSION['nbErreurMsg']==3){
+            } elseif ($_SESSION['nbErreurMsg'] == 3) {
             ?>
-            <embed src="../sound/tu-bluffes-martoni.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
+                <embed src="../sound/tu-bluffes-martoni.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
             <?php
-            }elseif($_SESSION['nbErreurMsg']==4){
+            } elseif ($_SESSION['nbErreurMsg'] == 4) {
             ?>
-            <embed src="../sound/aie-eu.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
+                <embed src="../sound/aie-eu.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
             <?php
-             $_SESSION['nbErreurMsg']=0;
+                $_SESSION['nbErreurMsg'] = 0;
             }
             ?>
         </object>

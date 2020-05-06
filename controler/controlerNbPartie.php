@@ -3,7 +3,7 @@ session_start();
 require_once('../object/objectPlayeur.php');
 require_once('../modele/connect.php');
 require_once('../object/objectMots.php');
-require_once('../object/objectGame.php');
+
 
 
 
@@ -22,7 +22,7 @@ $j = $lm->getRandomMots();
 
 
 
-$p = new Game($j);
+
 
 $_SESSION["mots"] = $j;
 // changé avec object game
@@ -35,7 +35,7 @@ $stmt = $bdd->prepare('UPDATE `users` SET `partie`= partie+1 WHERE pseudo = :pse
 $stmt->bindParam("pseudo", $psudo); // requete vers database
 $stmt->execute(); // requete vers database
 
-$_SESSION['user']['partie_win']++;
+$_SESSION['user']['partie']++;
 $_SESSION["victory"] = false;
 $_SESSION["over_use"] = [" "];
 $_SESSION["erreur"] = 0;
