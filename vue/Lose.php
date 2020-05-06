@@ -1,9 +1,10 @@
 <?php
 session_start();
-if (!isset($_SESSION['nom'])) {
-    header("Location: connexion.php");
-}
 
+if (!isset($_SESSION['user'])) {
+    header("Location: connexion.php");
+    die();
+}
 // var_dump($_SESSION);
 // var_dump($_POST);
 

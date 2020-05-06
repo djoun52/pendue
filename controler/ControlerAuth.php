@@ -8,7 +8,7 @@ if (!isset($_SESSION['nbErreurMsg'])) {
 }
 // var_dump($_POST);
 
-//  $_SESSION['nom'] = $_POST['u_email'];
+//  $_SESSION['user'] = $_POST['u_email'];
 //  header('Location: ../Vue/profil.php');
 
 if ($_GET['nom'] == "connect") {
@@ -19,8 +19,8 @@ if ($_GET['nom'] == "connect") {
             INPUT_POST,
             'u_password',
             FILTER_VALIDATE_REGEXP,
-            array("options" => array("regexp" =>"[a-zA-Z0-9]{8,32}$"))
-        );
+            array("options" => array("regexp" => "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/")));
+
         try {
             $stmt = $bdd->prepare('SELECT * FROM users WHERE pseudo = :pseudo'); // requete vers database
             $stmt->bindParam("pseudo", $pseudo); // requete vers database
@@ -34,11 +34,16 @@ if ($_GET['nom'] == "connect") {
         if ($result !== false) {
             if (password_verify($password, $result['password'])) {
                 // var_dump($result);
-                $_SESSION['nom'] = $result;
+                $_SESSION['user'] = $result; 
+           
+
+                var_dump($_SESSION['user']);
                 // unset($_SESSION['error_msg']);
                 $_SESSION['error_msg'] = '';
                 $_SESSION['nbErreurMsg'] = 0;
+                $_SESSION["init"]=0;
                 header('Location: ../Vue/newGame.php');
+                die();
             } else {
                 var_dump($result);
 
@@ -77,8 +82,8 @@ if ($_GET['nom'] == "register") {
         INPUT_POST,
         'u_password',
         FILTER_VALIDATE_REGEXP,
-        array("options" => array("regexp" => "[a-zA-Z0-9]{8,32}$"))
-    );
+        array("options" => array("regexp" => "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/")));
+
 
     if (!empty($_POST['u_password']) && !empty($_POST['u_confirmer_password']) && !empty($_POST['u_nom']) && !empty($_POST['u_pseudo'])) {
         try {
@@ -95,7 +100,7 @@ if ($_GET['nom'] == "register") {
         if ($result == false) {
 
 
-            if ($password) {
+            if ($password == true) {
                 if ($_POST['u_password'] == $_POST['u_confirmer_password']) {
                     $hashage = password_hash($_POST['u_password'], PASSWORD_ARGON2I);
                     try {
@@ -111,19 +116,19 @@ if ($_GET['nom'] == "register") {
                     header('Location: ../Vue/connexion.php');
                     die();
                 } else {
-                    $_SESSION['error_msg'] = '<p class="error"> utilisateur ou mots de passe incorect</p>';
+                    $_SESSION['error_msg'] = '<p class="error"> les mots de passe ne coresponde pas</p>';
                     $_SESSION['nbErreurMsg']++;
                     header('Location: ../Vue/inscription.php');
                     die();
                 }
             } else {
-                $_SESSION['error_msg'] = '<p class="error">utilisateur ou mots de passe incorect</p>';
+                $_SESSION['error_msg'] = '<p class="error"> les mots de passe n"est pas comforme</p>';
                 $_SESSION['nbErreurMsg']++;
                 header('Location: ../Vue/inscription.php');
                 die();
             }
         } else {
-            $_SESSION['error_msg'] = '<p class="error"> utilisateur ou mots de passe incorect</p>';
+            $_SESSION['error_msg'] = '<p class="error"> utilisateur existe</p>';
             $_SESSION['nbErreurMsg']++;
             header('Location: ../Vue/inscription.php');
             die();
@@ -142,30 +147,6 @@ if ($_GET['nom'] == 'deco') {
     header("Location: ../index.html");
     die();
 }
-
-if ($_GET['nom'] == 'profilNoGame') {
-
-    $psudo = $_SESSION['nom']['pseudo'];
-    $stmt = $bdd->prepare('SELECT * FROM users WHERE pseudo= :pseudo'); // requete vers database
-    $stmt->bindParam("pseudo", $psudo); // requete vers database
-    $stmt->execute(); // requete vers database
-    $result = $stmt->fetch();
-    $_SESSION['nom'] = $result;
-    header("Location: ../vue/profil.php?nom=noGame");
-    die();
-}
-if ($_GET['nom'] == 'profilGame') {
-
-    $psudo = $_SESSION['nom']['pseudo'];
-    $stmt = $bdd->prepare('SELECT * FROM users WHERE pseudo= :pseudo'); // requete vers database
-    $stmt->bindParam("pseudo", $psudo); // requete vers database
-    $stmt->execute(); // requete vers database
-    $result = $stmt->fetch();
-    $_SESSION['nom'] = $result;
-    header("Location: ../vue/profil.php");
-    die();
-}
-
 
 
 if ($_GET['nom'] == 'identi') {

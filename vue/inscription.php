@@ -1,6 +1,21 @@
 <?php
 session_start();
 // var_dump($_SESSION);
+$token = bin2hex(random_bytes(24));
+if (!isset($_SESSION['token']))
+    {
+        $_SESSION['token'] = $token;
+    } else
+    {
+        $token =$_SESSION['token'];
+    }
+
+    if(isset($_SESSION['user']) && !hash_equals($_SESSION['token'], $_SESSION['user']['token']))
+    {
+        header("../controler/ControlerAuth.php?nom=deco");
+    }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -55,7 +70,7 @@ session_start();
                 <label for="u_confirmer_password">confirmer password : </label>
                 <input type="text" name="u_confirmer_password" size="15">
             </div>
-
+            <input type="hidden" value="<?= $token ?>" name="token">
             <div class="flex">
                 <input type="submit" value="OK">
             </div>

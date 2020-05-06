@@ -6,8 +6,9 @@ session_start();
 
 
 
-if (!isset($_SESSION['nom'])) {
+if (!isset($_SESSION['user'])) {
     header("Location: connexion.php");
+    die();
 }
 
 ?>
@@ -27,7 +28,7 @@ if (!isset($_SESSION['nom'])) {
 <body>
     <div id="wrapper">
         <a href="../controler/ControlerAuth.php?nom=deco">deconnexion</a>
-        <a href="../controler/ControlerAuth.php?nom=profilGame">profil</a>
+        <a href="./profil.php?nom=game">profil</a>
 
         <form id="chooseLetter" action="../controler/controlerGame.php" method=post>
             <input type="text" name="lettre" maxlength="1">

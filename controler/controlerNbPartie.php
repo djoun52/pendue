@@ -1,41 +1,41 @@
 <?php
-
+session_start();
+require_once('../object/objectPlayeur.php');
 require_once('../modele/connect.php');
 require_once('../object/objectMots.php');
+require_once('../object/objectGame.php');
 
-session_start();
+
+
 // var_dump($_SESSION);
 // var_dump($_POST);
 // echo $_SESSION['nom']['pseudo'];
 
 
-if (!isset($_SESSION['nom'])) {
+if (!isset($_SESSION['user'])) {
     header("Location: connexion.php");
+    die();
 }
 
 
-$m = ['salut', 'marcher', 'saperlipopette', ''];
-$lm = new Mots($m);
 $j = $lm->getRandomMots();
-echo $j;
 
-if (!isset($_SESSION['nom'])) {
-    header("Location: connexion.php");
-}
 
+
+$p = new Game($j);
 
 $_SESSION["mots"] = $j;
+// changé avec object game
 
 
 
 
-
-$psudo = $_SESSION['nom']['pseudo'];
+$psudo = $pler->getPseudo();
 $stmt = $bdd->prepare('UPDATE `users` SET `partie`= partie+1 WHERE pseudo = :pseudo '); // requete vers database
 $stmt->bindParam("pseudo", $psudo); // requete vers database
 $stmt->execute(); // requete vers database
 
-$a = 0;
+$_SESSION['user']['partie_win']++;
 $_SESSION["victory"] = false;
 $_SESSION["over_use"] = [" "];
 $_SESSION["erreur"] = 0;

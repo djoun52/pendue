@@ -1,8 +1,10 @@
 <?php
 session_start();
-if (!isset($_SESSION['nom'])) {
-    header("Location: connexion.php");
-}
+require_once('../object/objectPlayeur.php');
+// if (!isset($_SESSION['nom'])) {
+//     header("Location: connexion.php");
+// }
+var_dump($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -20,7 +22,7 @@ if (!isset($_SESSION['nom'])) {
 <body>
 <div id="wrapper">
 <a href="../controler/ControlerAuth.php?nom=deco">deconnexion</a>
-<a href="../controler/ControlerAuth.php?nom=profilNoGame">profil</a> 
+<a href="./profil.php?nom=noGame">profil</a> 
 
   <a href="../controler/controlerNbPartie.php">nouvelle partie</a>
 </div>

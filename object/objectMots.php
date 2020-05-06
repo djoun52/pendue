@@ -32,3 +32,6 @@ class Mots
         return $s;
     }
 }
+
+$m = ['salut', 'marcher', 'saperlipopette', ''];
+$lm = new Mots($m);
