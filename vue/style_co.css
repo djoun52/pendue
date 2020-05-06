@@ -24,7 +24,7 @@
 
   #wrapper::after{
     content: "";
-    background-image: url( ../image/red_is_dead.jpg);
+    background-image: url( ./public/image/red_is_dead.jpg);
     background-size: 1600px;
     background-repeat: no-repeat;
     opacity: 0.5;

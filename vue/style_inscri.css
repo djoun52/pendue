@@ -25,7 +25,7 @@ p{
 }
 #wrapper::after{
     content: "";
-    background-image: url( ../image/1132544.jpg);
+    background-image: url( ./public/image/1132544.jpg);
     background-size: 1600px;
     background-repeat: no-repeat;
     opacity: 0.5;
