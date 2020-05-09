@@ -1,15 +1,11 @@
 <?php
 session_start();
+
 require_once('../object/objectPlayeur.php');
 
 var_dump($_SESSION);
 
-
-if (!isset($_SESSION['user'])) {
-  header("Location: connexion.php");
-  die();
-}
-
+require_once('../controler/contrtolerUsereExist.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
