@@ -1,8 +1,12 @@
 <?php
 
-require_once('../Modele/connect.php');
 
 session_start();
+
+
+require_once('../Modele/connect.php');
+
+
 if (!isset($_SESSION['nbErreurMsg'])) {
     $_SESSION['nbErreurMsg'] = 0;
 }
@@ -10,8 +14,9 @@ if (!isset($_SESSION['nbErreurMsg'])) {
 
 //  $_SESSION['user'] = $_POST['u_email'];
 //  header('Location: ../Vue/profil.php');
+switch ($_GET['nom'] ) {
+    case "connect" :
 
-if ($_GET['nom'] == "connect") {
     if (!empty($_POST['u_pseudo']) && !empty($_POST['u_password'])) {
 
         $pseudo = trim(filter_input(INPUT_POST, 'u_pseudo', FILTER_SANITIZE_URL));
@@ -19,33 +24,29 @@ if ($_GET['nom'] == "connect") {
             INPUT_POST,
             'u_password',
             FILTER_VALIDATE_REGEXP,
-            array("options" => array("regexp" => "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/")));
+            array("options" => array("regexp" => "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/"))
+        );
 
-        try {
-            $stmt = $bdd->prepare('SELECT * FROM users WHERE pseudo = :pseudo'); // requete vers database
-            $stmt->bindParam("pseudo", $pseudo); // requete vers database
-            $stmt->execute(); // requete vers database
-            $result = $stmt->fetch();
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            exit();
-        }
-
+        $result=getUsersByPseudo($pseudo);
+        
         if ($result !== false) {
             if (password_verify($password, $result['password'])) {
                 // var_dump($result);
-                $_SESSION['user'] = $result; 
-           
+                $_SESSION['user'] = $result;
+
 
                 var_dump($_SESSION['user']);
                 // unset($_SESSION['error_msg']);
                 $_SESSION['error_msg'] = '';
                 $_SESSION['nbErreurMsg'] = 0;
-                $_SESSION["init"]=0;
+                $_SESSION["init"] = 0;
+                if ($_POST['auto']) {
+                    setcookie("user", $result['secret'], time() + (86400 * 30), "/");
+                }
                 header('Location: ../Vue/newGame.php');
                 die();
             } else {
-                var_dump($result);
+                // var_dump($result);
 
                 $_SESSION['error_msg'] = '<p class="error">utilisateur ou mots de passe incorect</p>';
                 $_SESSION['nbErreurMsg']++;
@@ -66,10 +67,11 @@ if ($_GET['nom'] == "connect") {
         header('Location: ../Vue/connexion.php');
         die();
     }
-}
+
+    break;
 
 
-if ($_GET['nom'] == "register") {
+    case "register" :
 
 
 
@@ -82,19 +84,15 @@ if ($_GET['nom'] == "register") {
         INPUT_POST,
         'u_password',
         FILTER_VALIDATE_REGEXP,
-        array("options" => array("regexp" => "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/")));
+        array("options" => array("regexp" => "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/"))
+    );
 
 
     if (!empty($_POST['u_password']) && !empty($_POST['u_confirmer_password']) && !empty($_POST['u_nom']) && !empty($_POST['u_pseudo'])) {
-        try {
-            $stmt = $bdd->prepare('SELECT * FROM users WHERE pseudo= :pseudo'); // requete vers database
-            $stmt->bindParam("pseudo", $_POST['u_pseudo']); // requete vers database
-            $stmt->execute(); // requete vers database
-            $result = $stmt->fetch();
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            exit();
-        }
+       
+        $result=getUsersByPseudo($_POST['u_pseudo']);
+       
+        
 
 
         if ($result == false) {
@@ -103,14 +101,13 @@ if ($_GET['nom'] == "register") {
             if ($password == true) {
                 if ($_POST['u_password'] == $_POST['u_confirmer_password']) {
                     $hashage = password_hash($_POST['u_password'], PASSWORD_ARGON2I);
-                    try {
-                        $stmt = $bdd->prepare("INSERT INTO users (nom, prenom, pseudo, password, partie, partie_win) VALUES (?,?,?,?,?,?)");
-                        $stmt->execute(array($_POST['u_nom'], $_POST['u_prenom'],  $_POST['u_pseudo'], $hashage, 0, 0));
-                    } catch (PDOException $e) {
-                        echo $e->getMessage();
-                        exit();
-                    }
 
+
+                    $bytes = random_bytes(255);
+                    $secret = password_hash($bytes, PASSWORD_ARGON2I);
+
+                    putUseresInBDD($_POST['u_nom'],$_POST['u_prenom'],$_POST['u_pseudo'],$hashage,$secret);
+                 
                     $_SESSION['error_msg'] = '';
                     $_SESSION['nbErreurMsg'] = 0;
                     header('Location: ../Vue/connexion.php');
@@ -139,27 +136,32 @@ if ($_GET['nom'] == "register") {
         header('Location: ../Vue/inscription.php');
         die();
     }
-}
 
-if ($_GET['nom'] == 'deco') {
+    break;
+
+
+    case 'deco':
 
     session_destroy();
-    header("Location: ../index.html");
+    setcookie("user", $result['secret'], time() - 50, "/");
+    header("Location: ../index.php");
     die();
-}
 
+break;
 
-if ($_GET['nom'] == 'identi') {
+    case 'identi':
 
     unset($_SESSION['error_msg']);
     unset($_SESSION['nbErreurMsg']);
     header("Location: ../vue/connexion.php");
     die();
-}
-if ($_GET['nom'] == 'inscri') {
+break;
+
+    case 'inscri':  
 
     unset($_SESSION['error_msg']);
     unset($_SESSION['nbErreurMsg']);
     header("Location: ../vue/inscription.php");
     die();
+break;
 }

@@ -58,7 +58,7 @@ if (!isset($_SESSION['token']))
             </div>
             <div class="flex">
                 <label  id="option">
-                <input type="checkbox" name="auto" > Se souvenire de moi</label>
+                <input type="checkbox" name="auto" > Se souvenir de moi</label>
             </div>
             <input type="hidden" value="<?= $token ?>" name="token">
             <div class="flex">

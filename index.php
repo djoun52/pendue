@@ -1,6 +1,14 @@
 
-
-
+<?php
+session_start();
+if(!empty($_COOKIE["user"])) {
+    header('location: Controler/controlerCookie.php');
+    die();
+    }
+// }
+var_dump($_SESSION);
+var_dump($_COOKIE);
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>

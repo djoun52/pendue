@@ -5,6 +5,7 @@ require_once('../object/objectPlayeur.php');
 //     header("Location: connexion.php");
 // }
 var_dump($_SESSION);
+var_dump($_COOKIE);
 ?>
 <!DOCTYPE html>
 <html lang="fr">

@@ -14,9 +14,7 @@ if (!isset($_SESSION['user'])) {
     }
 
 $psudo=$pler->getPseudo();
-$stmt = $bdd->prepare('UPDATE `users` SET `partie_win`= partie_win+1 WHERE pseudo = :pseudo'); // requete vers database
-        $stmt->bindParam("pseudo", $psudo); // requete vers database
-        $stmt->execute(); // requete vers database
+addNbPartiWin($psudo);
         
         
         

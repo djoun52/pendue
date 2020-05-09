@@ -31,9 +31,8 @@ $_SESSION["mots"] = $j;
 
 
 $psudo = $pler->getPseudo();
-$stmt = $bdd->prepare('UPDATE `users` SET `partie`= partie+1 WHERE pseudo = :pseudo '); // requete vers database
-$stmt->bindParam("pseudo", $psudo); // requete vers database
-$stmt->execute(); // requete vers database
+
+addNbParti($psudo);
 
 $_SESSION['user']['partie']++;
 $_SESSION["victory"] = false;
