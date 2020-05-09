@@ -1,11 +1,8 @@
 
 <?php
 session_start();
-if(!empty($_COOKIE["user"])) {
-    header('location: Controler/controlerCookie.php');
-    die();
-    }
-// }
+require_once('controler/controlerCookie.php');
+
 var_dump($_SESSION);
 var_dump($_COOKIE);
 ?>

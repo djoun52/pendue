@@ -59,7 +59,7 @@ function getUsersBySecret($param){
             $_SESSION['user'] = $result['secret'];
             $_SESSION['error_msg'] = '';
             // var_dump($_COOKIE);
-            header('Location: ../vue/newGame.php');
+            header('Location: vue/newGame.php');
             die();
         }
     } catch (PDOException $error) {
@@ -70,7 +70,7 @@ function getUsersBySecret($param){
         $_SESSION['error_msg'] = "Hacker";
         // var_dump($_COOKIE);
 
-        header('Location: ../index.php');
+        // header('Location: index.php');
         die();
     }
 }
