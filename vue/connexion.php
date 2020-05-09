@@ -2,7 +2,7 @@
 session_start();
 // var_dump($_SESSION);
 
-require_once('../controler/controlerToken.php');
+require_once('../controler/controlerIncriptAndConection.php');
 
 
 ?>
@@ -36,7 +36,7 @@ require_once('../controler/controlerToken.php');
 
 
         <form id="formu" method="post" action="../Controler/ControlerAuth.php?nom=connect">
-            <div class="flex" >
+            <div class="flex">
                 <label id="labPseudo" for="u_nom">pseudo : </label>
                 <input type="text" name="u_pseudo" size="15">
             </div>
@@ -45,8 +45,8 @@ require_once('../controler/controlerToken.php');
                 <input type="text" name="u_password" size="15">
             </div>
             <div class="flex">
-                <label  id="option">
-                <input type="checkbox" name="auto" > Se souvenir de moi</label>
+                <label id="option">
+                    <input type="checkbox" name="auto"> Se souvenir de moi</label>
             </div>
             <input type="hidden" value="<?= $token ?>" name="token">
             <div class="flex">
@@ -55,9 +55,7 @@ require_once('../controler/controlerToken.php');
         </form>
         <?php
 
-        if (isset($_SESSION['error_msg'])) {
-            echo $_SESSION['error_msg'];
-        }
+        printMessError()
         ?>
 
 
@@ -69,40 +67,7 @@ require_once('../controler/controlerToken.php');
             <param name="autoplay" value="true">
 
             <?php
-            if (!isset($_SESSION['error_msg'])) {
-            ?>
-                <embed src="./public/sound/la-cite-de-la-peur-meurs-pourriture-communiste.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
-            <?php
-              }else{
-                switch ($_SESSION['nbErreurMsg'] ) {
-                case 1:
-             
-                ?>
-                    <embed src="./public/sound/il-dit-quil-voit-pas-le-rapport-la-cite-de-la-peur.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
-    
-                <?php
-    
-                    break;
-                case 2:
-             
-                ?>
-                <embed src="./public/sound/comment-voulez-vous-quavec-le-truc-je-fasse-le-chose-la-cite-de-la-peur.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
-                <?php
-                    break;
-                case 3:
-                
-                ?>
-                <embed src="./public/sound/tu-bluffes-martoni.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
-                <?php
-                    break;
-                case 4:
-                ?>
-                <embed src="./public/sound/aie-eu.mp3" autoplay="true" autostart="True" type="audio/mp3" width=0 />
-                <?php
-                $_SESSION['nbErreurMsg']=0;
-                break;
-                }
-            }
+             soundConnection($_SESSION['nbErreurMsg']);
             ?>
         </object>
     </div>

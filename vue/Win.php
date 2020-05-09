@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once('../controler/contrtolerUsereExist.php');
+require_once('../controler/controlerMain.php');
 ?>
 
 

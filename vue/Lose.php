@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('../controler/contrtolerUsereExist.php');
+require_once('../controler/controlerMain.php');
 // var_dump($_SESSION);
 // var_dump($_POST);
 

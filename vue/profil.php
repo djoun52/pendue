@@ -5,7 +5,7 @@ require_once('../object/objectPlayeur.php');
 
 var_dump($_SESSION);
 
-require_once('../controler/contrtolerUsereExist.php');
+require_once('../controler/controlerMain.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -18,17 +18,10 @@ require_once('../controler/contrtolerUsereExist.php');
 </head>
 <body>
 <div id="wrapper">
-<a href="../controler/ControlerAuth.php?nom=deco">deconnexion</a>
+
 <?php
-if( $_GET["nom"] == "game"){
-?>
-<a href="lettre.php">reprendre la partie</a> 
-<?php
-}else{
-?>
-<a href="newGame.php">commencer un partie</a> 
-<?php
-}
+
+startGameOrContinu($_GET["nom"]);
 
 echo $pler->infoplayer();
 ?>

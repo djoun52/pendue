@@ -5,7 +5,7 @@ session_start();
 
 
 
-require_once('../controler/contrtolerUsereExist.php');
+require_once('../controler/controlerMain.php');
 
 ?>
 <!DOCTYPE html>
@@ -50,21 +50,9 @@ require_once('../controler/contrtolerUsereExist.php');
 
         <div>
             <?php
-            if ($_SESSION["erreur"] == 0) {
-                echo '<img src="./public/image/1.png">';
-            } elseif ($_SESSION["erreur"] == 1) {
-                echo '<img src="./public/image/2.png">';
-            } elseif ($_SESSION["erreur"] == 2) {
-                echo '<img src="./public/image/3.png">';
-            } elseif ($_SESSION["erreur"] == 3) {
-                echo '<img src="./public/image/4.png">';
-            } elseif ($_SESSION["erreur"] == 4) {
-                echo '<img src="./public/image/5.png">';
-            } elseif ($_SESSION["erreur"] == 5) {
-                echo '<img src="./public/image/6.png">';
-            } elseif ($_SESSION["erreur"] == 6) {
-                echo '<img src="./public/image/7.png">';
-            }
+
+            echo printError($_SESSION["erreur"]);
+       
             ?>
         </div>
         </section>  

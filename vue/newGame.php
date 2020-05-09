@@ -1,10 +1,8 @@
 <?php
 session_start();
-require_once('../controler/contrtolerUsereExist.php');
+require_once('../controler/controlerMain.php');
 require_once('../object/objectPlayeur.php');
-// if (!isset($_SESSION['nom'])) {
-//     header("Location: connexion.php");
-// }
+
 var_dump($_SESSION);
 var_dump($_COOKIE);
 

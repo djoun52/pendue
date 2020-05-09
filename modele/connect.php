@@ -56,7 +56,7 @@ function getUsersBySecret($param){
         $stmt->execute();
         $result = $stmt->fetch();
         if ($result !== false) {
-            $_SESSION['user'] = $result['secret'];
+            $_SESSION['user'] = $result;
             $_SESSION['error_msg'] = '';
             // var_dump($_COOKIE);
             header('Location: vue/newGame.php');
