@@ -30,7 +30,7 @@ if (!isset($_SESSION['user'])) {
 <br>
 <p>le mots était <?php echo $_SESSION['mots'] ;?> </p>
 <br>
-<a href="newGame.php">dommage retente ta chance</a> 
+<a href="../controler/controlerEndGame.php">dommage retente ta chance</a> 
 </div>
 </body>
 </html>

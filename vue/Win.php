@@ -24,7 +24,7 @@ if (!isset($_SESSION['user'])) {
 
     <p> C'est la victiore </p><br>
     <p>
-        Veut tu <a href="newGame.php">rejouer</a>
+        Veut tu <a href="../controler/controlerEndGame.php">rejouer</a>
  </p> 
 
 </div>
