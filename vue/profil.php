@@ -3,7 +3,7 @@ session_start();
 
 require_once('../object/objectPlayeur.php');
 
-var_dump($_SESSION);
+// var_dump($_SESSION);
 
 require_once('../controler/controlerMain.php');
 ?>

@@ -3,8 +3,8 @@
 session_start();
 require_once('controler/controlerCookie.php');
 
-var_dump($_SESSION);
-var_dump($_COOKIE);
+// var_dump($_SESSION);
+// var_dump($_COOKIE);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
