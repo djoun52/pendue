@@ -11,7 +11,7 @@ require_once('../controler/controlerIncriptAndConection.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style_inscri.css">
+    <link rel="stylesheet" href="public/css/style_inscri.css">
     <title>Document</title>
 </head>
 
