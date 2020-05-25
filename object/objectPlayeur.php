@@ -1,25 +1,24 @@
 <?php
+require_once "Entity.php";
 
-
-class Player {
+class Player extends Entity {
   // Properties
 
     private $nom;
     private $prenom;
     private $pseudo;
-    private $gamePlay;
-    private $gameWin;
+    private $partie;
+    private $partieWin;
 
-    public function __construct($c_nom, $c_prenom, $c_pseudo,$_gamePlay,$_gameWin) 
+
+
+
+    public function __construct($c_donnes)
     {
-        $this->nom = $c_nom;
-        $this->prenom = $c_prenom;
-        $this->pseudo = $c_pseudo;
-        $this->gamePlay = $_gamePlay;
-        $this->gameWin = $_gameWin;
+       parent::hydrate($c_donnes);
     }
 
-
+    
     public function getNom()
     {
         return $this->nom;
@@ -32,39 +31,54 @@ class Player {
     {
         return $this->pseudo;
     }
-    public function getGamePlay()
+    public function getPartie()
     {
-        return $this->gamePlay;
+        return $this->partie;
     }
-    public function getGameWin()
+    public function getPartieWin()
     {
-        return $this->gameWin;
+        return $this->partieWin;
     }
-    public function setGamePlay($p_gamePlay)
-    {
-        $this->gamePlay = $p_gamePlay;
-    }
-    public function setGameWin($p_gameWin)
-    {
-        $this->gameWin = $p_gameWin;
-    }
-    public function addGamePlay($a_gamePlay)
-    {
-        $this->gamePlay = $this->gamePlay + $a_gamePlay;
-    }
-    public function addGameWin($a_gameWin)
-    {
-        $this->gameWin = $this->gameWin + $a_gameWin;
-    }
-    
 
+
+    public function setNom($p_nom)
+    {
+        $this->nom = $p_nom;
+    }
+    public function setPrenom($p_prenom)
+    {
+        $this->prenom = $p_prenom;
+    }
+    public function setPseudo($p_pseudo)
+    {
+        $this->pseudo = $p_pseudo;
+    }
+    public function setPartie($p_partie)
+    {
+        $this->partie = $p_partie;
+    }
+    public function setPartieWin($p_partieWin)
+    {
+        $this->partieWin = $p_partieWin;
+    }
+
+    public function addPartie($a_partie)
+    {
+        $this->partie = $this->partie + $a_partie;
+    }
+    public function addPartieWin($a_partieWin)
+    {
+        $this->partieWin = $this->partieWin + $a_partieWin;
+    }
+
+   
 
     public function infoplayer()
     {
 
 
-        if ($this->getGameWin() !=0){
-            $r=100/($this->getGamePlay()/$this->getGameWin() );
+        if ($this->getPartieWin() !=0){
+            $r=100/($this->getPartie()/$this->getPartieWin() );
           $stat=round($r,2);
           }else{
             $stat=0;
@@ -79,8 +93,8 @@ class Player {
        $s.= "<br><br>";
        
        $s.="<h2>Statistique</h2>";
-       $s.="<p>partie joué :  ".  $this->getGamePlay()  ." </p>";
-       $s.="<p>partie gagné :  ".  $this->getGameWin()  ." </p>";
+       $s.="<p>partie joué :  ".  $this->getPartie()  ." </p>";
+    //    $s.="<p>partie gagné :  ".  $this->getPartieWin()  ." </p>";
        $s.="<p>pourcentage de victoire : $stat </p>";
        
           return $s;
@@ -89,5 +103,4 @@ class Player {
     
 }
 
-$pler= new Player( $_SESSION['user']['nom'] , $_SESSION['user']['prenom'] , $_SESSION['user']['pseudo'] ,$_SESSION['user']['partie'] ,$_SESSION['user']['partie_win'] );
-
+$pler= new Player( $_SESSION['user']);
